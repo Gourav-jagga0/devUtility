@@ -1,0 +1,6 @@
+var endpoints={
+    "decryptAll":"/decryptAll",
+    "decrypt":"/decrypt",
+    "encrypt":"/encrypt"
+};
+export {endpoints};
