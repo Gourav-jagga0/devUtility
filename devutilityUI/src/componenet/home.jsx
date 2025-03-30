@@ -4,7 +4,7 @@ import Content from "./content";
 const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     const [selectedOption, setSelectedOption] = useState("decryptPassword");
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     return (
         <AppContext.Provider value={{ isSidebarOpen, setIsSidebarOpen, selectedOption, setSelectedOption }}>

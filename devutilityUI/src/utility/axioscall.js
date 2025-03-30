@@ -1,11 +1,11 @@
 import { endpoints } from "./urlMap";
 import axios from "axios";
 
-const baseUrl = `${window.location.protocol}//${window.location.host}`;
-//const baseUrl = "http://localhost:8080";
+//const baseUrl = `${window.location.protocol}//${window.location.host}`;
+const baseUrl = "http://localhost:8080";
 
-const callPost = (endPoint, payload) => {
-  return axios.post(baseUrl + endpoints[endPoint], payload)
+const callPost = (endPoint, payload,header) => {
+  return axios.post(baseUrl + endpoints[endPoint], payload,{headers:header})
         .then(res => {
             if(res!=null && res.status===200){
                 return res.data;

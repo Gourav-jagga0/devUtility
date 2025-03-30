@@ -1,16 +1,16 @@
 import Crypto from "./crypto";
+import Keystore from "./keystore";
 import { useAppContext } from "./home";
 
 const Content = () => {
     const { selectedOption } = useAppContext();
-
     return (
         <>
             {selectedOption === "decryptPassword" && (
              <Crypto/>
             )}
             {selectedOption === "decryptKeystore" && (
-                <h2 className="text-xl font-semibold text-gray-800">Decrypt Keystore File Screen</h2>
+                <Keystore/>
             )}
             {!selectedOption && (
                 <h2 className="text-xl font-semibold text-gray-600">

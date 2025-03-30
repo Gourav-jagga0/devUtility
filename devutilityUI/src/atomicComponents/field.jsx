@@ -1,11 +1,13 @@
 import React from 'react';
 
-function Field({ fieldName, label, formData, setFormData }) {
+function Field({ fieldName, label, formData, setFormData ,type}) {
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    debugger;
+    const { name, value, type, checked,files } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]:type === "file" ? files[0] : type === "checkbox" ? checked : value
+      
     }));
   };
 
@@ -15,9 +17,10 @@ function Field({ fieldName, label, formData, setFormData }) {
       <input
         id={fieldName}
         name={fieldName}
-        value={formData[fieldName] || ""} 
         onChange={handleChange}
+        {...(type!="file" && formData && formData[fieldName] ? { value: formData[fieldName] } : {})} 
         className="w-full p-2 border rounded-md"
+        type={type ||"text"}
       />
     </div>
   );
