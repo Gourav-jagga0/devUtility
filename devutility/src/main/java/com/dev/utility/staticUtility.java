@@ -11,14 +11,14 @@ import java.util.Set;
 public class staticUtility {
 	static Set<String> passphrases = new HashSet();
 
-	static Set<String> getPassPhrases() {
+	public static Set<String> getPassPhrases() {
 		if (passphrases.isEmpty()) {
 			passphrases = (HashSet<String>) loadFromFile("passPhrases");
 		}
 		return passphrases;
 	}
 
-	static Set<String> setPassPhrases(String data) {
+	public static Set<String> setPassPhrases(String data) {
 		if (passphrases.add(data)) {
 			saveToFile("passPhrases", passphrases);
 		}
