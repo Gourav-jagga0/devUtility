@@ -5,7 +5,10 @@
 			fileName="logs/app.log"
 			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout>
-			<Pattern>%d [%t] [%p] %c | tenant:%X{tenantName} | uuid: %X{request_uuid} | %replace{%replace{%replace{%replace{%replace{%replace{%replace{%m}{password=[^,]*}{password=******}}{wsPassword=[^,]*}{wsPassword=******}}{bindPass=[^,]*}{bindPass=******}}{unicodePwd=[^,]*}{unicodePwd=******}}{wsPwd=[^,]*}{wsPwd=******}}{generatedPassword=[^,]*}{generatedPassword=******}}{loginPassword=[^,]*}{loginPassword=******}%n"</Pattern>
+				<Pattern>
+					%d [%t] [%p] %c | tenant:%X{tenantName} | uuid:
+					%X{request_uuid} |
+					%replace{%replace{%replace{%replace{%replace{%replace{%replace{%m}{password=[^,]*}{password=******}}{wsPassword=[^,]*}{wsPassword=******}}{bindPass=[^,]*}{bindPass=******}}{unicodePwd=[^,]*}{unicodePwd=******}}{wsPwd=[^,]*}{wsPwd=******}}{generatedPassword=[^,]*}{generatedPassword=******}}{loginPassword=[^,]*}{loginPassword=******}%n"</Pattern>
 			</PatternLayout>
 			<Policies>
 				<OnStartupTriggeringPolicy />
@@ -15,19 +18,45 @@
 			<DefaultRolloverStrategy max="20" />
 		</RollingFile>
 		<Console name="Console" target="SYSTEM_OUT">
-			<!--  <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />-->
+			<!--  <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level
+			%logger{36} - %msg%n" />-->
 			<PatternLayout>
-				<Pattern>%d [%t] [%p] %c{1.}  | tenant:%X{tenantName} | uuid: %X{request_uuid} | %replace{%replace{%replace{%replace{%replace{%replace{%replace{%m}{password=[^,]*}{password=******}}{wsPassword=[^,]*}{wsPassword=******}}{bindPass=[^,]*}{bindPass=******}}{unicodePwd=[^,]*}{unicodePwd=******}}{wsPwd=[^,]*}{wsPwd=******}}{generatedPassword=[^,]*}{generatedPassword=******}}{loginPassword=[^,]*}{loginPassword=******}%n"</Pattern>
+				<Pattern>
+					%d [%t] [%p] %c{1.} | tenant:%X{tenantName} | uuid:
+					%X{request_uuid} |
+					%replace{%replace{%replace{%replace{%replace{%replace{%replace{%m}{password=[^,]*}{password=******}}{wsPassword=[^,]*}{wsPassword=******}}{bindPass=[^,]*}{bindPass=******}}{unicodePwd=[^,]*}{unicodePwd=******}}{wsPwd=[^,]*}{wsPwd=******}}{generatedPassword=[^,]*}{generatedPassword=******}}{loginPassword=[^,]*}{loginPassword=******}%n"</Pattern>
 			</PatternLayout>
 		</Console>
-	</Appenders >
-	
+		<RollingFile name="InternalRollingFileAppender"
+			fileName="logs/Internal.log"
+			filePattern="logs/$${date:yyyy-MM}/appInternal-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout>
+				<Pattern>
+					%d [%t] [%p] %c{1.} | tenant:%X{tenantName} | uuid:
+					%X{request_uuid} |
+					%replace{%replace{%replace{%replace{%replace{%replace{%replace{%m}{password=[^,]*}{password=******}}{wsPassword=[^,]*}{wsPassword=******}}{bindPass=[^,]*}{bindPass=******}}{unicodePwd=[^,]*}{unicodePwd=******}}{wsPwd=[^,]*}{wsPwd=******}}{generatedPassword=[^,]*}{generatedPassword=******}}{loginPassword=[^,]*}{loginPassword=******}%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+
+	</Appenders>
+
 	<Loggers>
+		<Logger name="*" level="DEBUG" additivity="false">
+			<AppenderRef ref="InternalRollingFileAppender" level="DEBUG"  />
+		</Logger>
 		<Logger name="com.dev" level="DEBUG" additivity="false">
 			<AppenderRef ref="DefaultRollingFileAppender" level="DEBUG" />
 		</Logger>
-		
-		<Root level="INFO" additivity="false">
+
+		<Root level="DEBUG" additivity="false">
+		<AppenderRef ref="InternalRollingFileAppender" level="DEBUG"  />
+		<AppenderRef ref="Console" level="INFO"  />
 		</Root>
 	</Loggers>
 </Configuration>
