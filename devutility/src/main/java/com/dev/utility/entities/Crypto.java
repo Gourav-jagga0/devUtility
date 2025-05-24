@@ -12,6 +12,31 @@ public class Crypto {
 	String encryptAlgo;
 	String Algo;
 
+	public Crypto(String key) {
+		super();
+		this.key = key;
+	}
+
+	public Crypto(String key, String passPhrase, int keyLength) {
+		super();
+		this.key = key;
+		this.passPhrase = passPhrase;
+		this.keyLength = keyLength;
+	}
+
+	public Crypto(String key, String passPhrase, int keyLength, int iterationCount, byte[] salt, boolean randomIv,
+			String encryptAlgo, String algo) {
+		super();
+		this.key = key;
+		this.passPhrase = passPhrase;
+		this.keyLength = keyLength;
+		this.iterationCount = iterationCount;
+		this.salt = salt;
+		this.randomIv = randomIv;
+		this.encryptAlgo = encryptAlgo;
+		Algo = algo;
+	}
+
 	public String getKey() {
 		return key;
 	}

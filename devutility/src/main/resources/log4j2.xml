@@ -6,9 +6,7 @@
 			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout>
 				<Pattern>
-					%d [%t] [%p] %c | tenant:%X{tenantName} | uuid:
-					%X{request_uuid} |
-					%replace{%replace{%replace{%replace{%replace{%replace{%replace{%m}{password=[^,]*}{password=******}}{wsPassword=[^,]*}{wsPassword=******}}{bindPass=[^,]*}{bindPass=******}}{unicodePwd=[^,]*}{unicodePwd=******}}{wsPwd=[^,]*}{wsPwd=******}}{generatedPassword=[^,]*}{generatedPassword=******}}{loginPassword=[^,]*}{loginPassword=******}%n"</Pattern>
+					%d [%t] [%p] %c %n</Pattern>
 			</PatternLayout>
 			<Policies>
 				<OnStartupTriggeringPolicy />
@@ -22,9 +20,7 @@
 			%logger{36} - %msg%n" />-->
 			<PatternLayout>
 				<Pattern>
-					%d [%t] [%p] %c{1.} | tenant:%X{tenantName} | uuid:
-					%X{request_uuid} |
-					%replace{%replace{%replace{%replace{%replace{%replace{%replace{%m}{password=[^,]*}{password=******}}{wsPassword=[^,]*}{wsPassword=******}}{bindPass=[^,]*}{bindPass=******}}{unicodePwd=[^,]*}{unicodePwd=******}}{wsPwd=[^,]*}{wsPwd=******}}{generatedPassword=[^,]*}{generatedPassword=******}}{loginPassword=[^,]*}{loginPassword=******}%n"</Pattern>
+					%d [%t] [%p] %c %n</Pattern>
 			</PatternLayout>
 		</Console>
 		<RollingFile name="InternalRollingFileAppender"
@@ -32,9 +28,7 @@
 			filePattern="logs/$${date:yyyy-MM}/appInternal-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout>
 				<Pattern>
-					%d [%t] [%p] %c{1.} | tenant:%X{tenantName} | uuid:
-					%X{request_uuid} |
-					%replace{%replace{%replace{%replace{%replace{%replace{%replace{%m}{password=[^,]*}{password=******}}{wsPassword=[^,]*}{wsPassword=******}}{bindPass=[^,]*}{bindPass=******}}{unicodePwd=[^,]*}{unicodePwd=******}}{wsPwd=[^,]*}{wsPwd=******}}{generatedPassword=[^,]*}{generatedPassword=******}}{loginPassword=[^,]*}{loginPassword=******}%n</Pattern>
+					%d [%t] [%p] %c %n</Pattern>
 			</PatternLayout>
 			<Policies>
 				<OnStartupTriggeringPolicy />
@@ -48,15 +42,15 @@
 
 	<Loggers>
 		<Logger name="*" level="DEBUG" additivity="false">
-			<AppenderRef ref="InternalRollingFileAppender" level="DEBUG"  />
+			<AppenderRef ref="InternalRollingFileAppender" level="DEBUG" />
 		</Logger>
 		<Logger name="com.dev" level="DEBUG" additivity="false">
 			<AppenderRef ref="DefaultRollingFileAppender" level="DEBUG" />
 		</Logger>
 
 		<Root level="DEBUG" additivity="false">
-		<AppenderRef ref="InternalRollingFileAppender" level="DEBUG"  />
-		<AppenderRef ref="Console" level="INFO"  />
+			<AppenderRef ref="InternalRollingFileAppender" level="DEBUG" />
+			<AppenderRef ref="Console" level="INFO" />
 		</Root>
 	</Loggers>
 </Configuration>
