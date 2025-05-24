@@ -49,6 +49,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="ignore_optional_problems" value="true"/>
 			<attribute name="m2e-apt" value="true"/>
+<<<<<<< HEAD
+>>>>>>> fc852758556b97828d3e9a8600b607d5c4fa5e97
+=======
 >>>>>>> fc852758556b97828d3e9a8600b607d5c4fa5e97
 			<attribute name="test" value="true"/>
 		</attributes>
