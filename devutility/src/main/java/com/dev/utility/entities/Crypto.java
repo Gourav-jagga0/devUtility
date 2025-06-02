@@ -7,10 +7,14 @@ public class Crypto {
 	private String passPhrase;
 	private int keyLength;
 	private int iterationCount;
-	byte[] salt;
-	boolean randomIv;
-	String encryptAlgo;
-	String Algo;
+	private byte[] salt;
+	private boolean randomIv;
+	private String encryptAlgo;
+	private String Algo;
+	
+	public Crypto() {
+		super();
+	}
 
 	public Crypto(String key) {
 		super();

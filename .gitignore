@@ -6,4 +6,6 @@ devutility/src/main/resources/static/*
 !devutility/src/main/resources/static/.gitignore
 .metadata
 devutility/logs
-devutility/passPhrases
+devutility/.classpath
+devutility/.factorypath
+devutility/data/*
